@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService {
            role = UserRole.ADMIN;
        }
 
+       //add @Builder annotation in the user class so that this can work
        User user = User.builder()
                .name(registrationRequest.getName())
                .email(registrationRequest.getEmail())

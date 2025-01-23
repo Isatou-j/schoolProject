@@ -55,7 +55,8 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.34</version>
+<!--			change the version from <version>1.18.33</version> to below-->
+			<version>1.18.36</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -76,11 +77,13 @@
 			<version>1.12.780</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
+<!--		The dependency below is a duplicate to the lombok dependency above. It's not causing any error but consider removing it for clean code. That's why I commented it.-->
+
+<!--		<dependency>-->
+<!--			<groupId>org.projectlombok</groupId>-->
+<!--			<artifactId>lombok</artifactId>-->
+<!--			<optional>true</optional>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
@@ -112,6 +115,8 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+<!--							add the version below-->
+							<version>1.18.36</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>

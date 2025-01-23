@@ -4,6 +4,7 @@ import com.schoolProject.ecommerceApplication.enums.UserRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
@@ -11,6 +12,8 @@ import java.util.List;
 
 @Data
 @Entity
+// add builder annotation to be access in userServiceImpl
+@Builder
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor

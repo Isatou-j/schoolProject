@@ -66,7 +66,9 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
-    @GetMapping("/get-by-category-id/{categoryId}")
+    //consider changing the url name below. I added an extra y to by because it had the same name with the
+    // one below it which was causing error
+    @GetMapping("/get-byy-category-id/{categoryId}")
     public ResponseEntity<Response> getProductByCategory(@PathVariable Long categoryId ) {
         return ResponseEntity.ok(productService.getProductsByCategory(categoryId));
     }

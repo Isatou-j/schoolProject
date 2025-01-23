@@ -29,7 +29,8 @@ public class EntityDtoMapper {
         addressDto.setCity(address.getCity());
         addressDto.setState(address.getState());
         addressDto.setStreet(address.getStreet());
-        addressDto.setZipcode(address.getZipcode());
+        // change the c in zipcode to capital C
+        addressDto.setZipCode(address.getZipCode());
 
         return addressDto;
     }

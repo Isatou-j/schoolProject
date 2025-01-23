@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,7 +21,8 @@ public class Payment {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private Order order;
+    // Make this return a list of orders instead of only one Order because the annotation on it (@OneToMany) will return list of orders
+    private List<Order> order;
 
     @Column(name="created_at")
     private LocalDateTime createdAt = LocalDateTime.now();

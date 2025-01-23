@@ -143,7 +143,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Response searchProduct(String searchValue) {
-        List<Product> products = productRepo.findNameContainingOrderDescriptionContaining(searchValue, searchValue);
+        // I changed this to call the new method name in the productRepo
+        List<Product> products = productRepo.findByNameContainingAndDescriptionContaining(searchValue, searchValue);
 
         if (products.isEmpty()){
             throw new NotFoundException("No product found");
