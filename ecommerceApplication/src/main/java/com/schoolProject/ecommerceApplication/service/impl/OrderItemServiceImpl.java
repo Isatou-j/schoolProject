@@ -36,8 +36,8 @@ public class OrderItemServiceImpl implements OrderItemService {
 
     private final OrderRepo orderRepo;
     private final OrderItemRepo orderItemRepo;
-    private ProductRepo productRepo;
-    private UserService userService;
+    private final ProductRepo productRepo;
+    private final UserService userService;
     private  final EntityDtoMapper entityDtoMapper;
 
     @Override

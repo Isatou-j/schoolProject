@@ -33,24 +33,25 @@ const EditProductPage = () => {
         },[productId]);
 
         const handleImageChange = (e) =>{
-            setImage(e.target.file[e]);
-            setImageUrl(URL.createObjectURL(e.target.file[e]))
+            // setImage(e.target.file[e]);
+            console.log(e.target)
+            setImageUrl(e.target.files[0].name)
         };
 
           const handleSubmit = async (e) => {
                 e.preventDefault();
                 try{
-                    const formData = new FormData();
-                    if(image){
-                        formData.append('image', image)
-                    }
-                    formData.append('productId', productId)
-                    formData.append('categoryId', categoryId)
-                    formData.append('name', name)
-                    formData.append('description', description)
-                    formData.append('price', price)
+                    const formData = {id: productId, imageUrl: imageUrl, category: {id : categoryId}, name, description, price}
+                    // if(image){
+                    //     formData.append('image', image)
+                    // }
+                    // formData.append('productId', productId)
+                    // formData.append('categoryId', categoryId)
+                    // formData.append('name', name)
+                    // formData.append('description', description)
+                    // formData.append('price', price)
         
-                    const response = await ApiService.updateProduct(formData)
+                    const response = await ApiService.updateProduct(productId,formData)
                     if(response.status === 200) {
                         setMessage(response.message)
                         setTimeout(() => {

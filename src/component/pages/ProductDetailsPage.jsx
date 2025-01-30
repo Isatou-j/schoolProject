@@ -9,7 +9,7 @@ const ProductDetailsPage = () => {
 
     const {productId} = useParams();
     const {cart, dispatch} = useCart();
-    const {product, setProduct} = useState();
+    const [product, setProduct] = useState(null);
 
     useEffect(() => {
         fetchProduct();
@@ -18,7 +18,8 @@ const ProductDetailsPage = () => {
     const fetchProduct = async () => {
         try{
             const response = await ApiService.getProductById(productId);
-            setProduct(response.product());
+            const resProduct = response.product;
+            setProduct(resProduct);
         }catch(error){
             console.log(error.message || error)
         }
@@ -53,7 +54,7 @@ const ProductDetailsPage = () => {
 
 }
 
-     if(product){
+     if(!product){
         return <p>Loading product detail</p>
      }
 
@@ -64,7 +65,7 @@ const ProductDetailsPage = () => {
             <img src={product?.imageUrl} alt={product?.name} />
             <h1>{product?.name}</h1>
             <p>{product?.description}</p>
-            <span>${product.price.tofixed(2)}</span>
+            <span>${product.price.toFixed(2)}</span>
 
             {cartItem ? (
                 <div className="quantity-controls">

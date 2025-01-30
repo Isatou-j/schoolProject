@@ -7,7 +7,7 @@ import '../../style/cartPage.css'
 
 const CartPage = () => {
     const { cart, dispatch} = useCart();
-    const { message, setMessage} = useState(null);
+    const [ message, setMessage] = useState(null);
     const navigate = useNavigate();
 
     
@@ -82,9 +82,9 @@ const CartPage = () => {
                                     <h2>{item.name}</h2>
                                     <p>{item.description}</p>
                                     <div className="quantity-controls">
-                                         <button onClick={decrementItem(item)}>-</button>
+                                         <button onClick={() => decrementItem(item)}>-</button>
                                          <span>{item.quantity}</span>
-                                         <button onClick={incrementItem(item)}>+</button>
+                                         <button onClick={() => incrementItem(item)}>+</button>
                                     </div>
                                     <span>${item.price.toFixed()}</span>
                                 </div>

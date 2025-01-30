@@ -1,8 +1,8 @@
-.admin-product-list{
+.admin-product-page{
     align-items: center;
     width: 50%;
     margin: auto;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 .product-btn{
@@ -31,16 +31,16 @@
     background-color: tomato;
 }
 
-.admin-product-list button:hover{
+.admin-product-page button:hover{
     background-color: #420505;
 }
 
-.admin-product-list ul{
+.admin-product-page ul{
     list-style: none;
     padding: 0;
 }
 
-.admin-product-list li{
+.admin-product-page li{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -50,11 +50,11 @@
     border: 1px solid #ddd;
 }
 
-.admin-product-list span{
+.admin-product-page span{
     flex: 1;
     color: #444;
 }
 
-.admin-product-list button{
+.admin-product-page button{
     margin-left: 10px;
 }

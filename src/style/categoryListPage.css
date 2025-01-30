@@ -18,6 +18,8 @@
 .category-list li{
     flex: 1 1 calc(33.33% - 20px);
     max-width: calc(33.33% - 20px);
+    margin-bottom: 5px;
+    list-style-type: none;
 }
 
 .category-list button{

@@ -16,23 +16,18 @@ const AddProductPage = () => {
 
     const navigate = useNavigate();
 
-    useEffect(()=>(
-    ApiService.getAllCategory().then((res) => setCategories(res.categoryList))
-    ),[])
+    useEffect(()=>{
+        ApiService.getAllCategory().then((res) => setCategories(res.categoryList))
+    },[])
 
     const handleImage = async (e) => {
-        setImage(e.target.files[0])
+        setImage(e.target.files[0].name)
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const formData = new FormData();
-            formData.append('image', image)
-            formData.append('categoryId', categoryId)
-            formData.append('name', name)
-            formData.append('description', description)
-            formData.append('price', price)
+            const formData = {imageUrl: image, category: {id : categoryId}, name, description, price}
 
             const response = await ApiService.addProduct(formData)
             if(response.status === 200) {

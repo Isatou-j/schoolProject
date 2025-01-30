@@ -38,7 +38,7 @@ const AdminProductPage = () => {
             const confirmed = window.confirm("Are you sure you want to delete this product? ")
             if(confirmed){
                 try{
-                    await ApiService.deleteProduct();
+                    await ApiService.deleteProduct(id);
                     fetchProducts();
                 }catch(error){
                     console.log("Error deleting category by id")
@@ -57,10 +57,10 @@ const AdminProductPage = () => {
                             <button className="product-btn" onClick={() => {navigate('/admin/add-product')}}>Add product</button>
                              <ul>
                                 {products.map((product) =>(
-                                    <li key={product.id}>an
+                                    <li key={product.id}>
                                         <span>{product.name}</span>
                                         <button className="product-btn" onClick={() => handleEdit(product.id)}>Edit</button>
-                                        <button className="product-btn-delete" onClick={() => handleDelete(product.id)}></button>
+                                        <button className="product-btn-delete" onClick={() => handleDelete(product.id)}>Delete</button>
                                     </li>
                                 ))}
                              </ul>

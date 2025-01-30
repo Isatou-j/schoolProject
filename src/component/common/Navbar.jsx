@@ -24,7 +24,7 @@ const Navbar = () => {
     }
 
     const handleLogout = () =>{
-        const confirm = window.confirm("are you you want to logout? ");
+        const confirm = window.confirm("are you sure want to logout? ");
         if(confirm){
             ApiService.logout();
             setTimeout(() =>{
@@ -52,9 +52,9 @@ const Navbar = () => {
             <div className="navbar-link">
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/categories">Categories</NavLink>
-               {isAuthenticated && <NavLink to="/profile">My Account</NavLink>}
+               {!isAdmin && isAuthenticated && <NavLink to="/profile">My Account</NavLink>}
                 {isAdmin &&<NavLink to="/admin">Admin</NavLink>}
-                <NavLink to="/login">Login</NavLink>
+                {!isAuthenticated && <NavLink to="/login">Login</NavLink>}
                 {isAuthenticated && <NavLink onClick={handleLogout}>Logout</NavLink>}
                 <NavLink to="/cart">Cart</NavLink>
             </div>

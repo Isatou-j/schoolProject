@@ -50,13 +50,13 @@ const ProfilePage = () => {
         <div className="profile-page">
             <h2>Welcome {userInfo.name}</h2>
 
-            (error ? (
+            {error ? (
                 <p className="error-message">{error}</p>
             ):(
                 <div>
                     <p><strong>Name: </strong>{userInfo.name}</p>
                 <p><strong>Email: </strong>{userInfo.email}</p>
-                <p><strong>Phone Number: </strong>{userInfo.phonenumber}</p>
+                <p><strong>Phone Number: </strong>{userInfo.phoneNumber}</p>
                 
                <div>
 
@@ -84,10 +84,11 @@ const ProfilePage = () => {
                     <li key={order.id}>
                         <img src={order.product?.imageurl} alt={order.name} />
                         <div>
-                            <p><strong>Name: </strong>{order.product.name}</p>
+                            {/* I commented the codes below because they are causing problems. The paginated orders does not have any product property. */}
+                            {/* <p><strong>Name: </strong>{order.product.name}</p>
                             <p><strong>Status: </strong>{order.product.status}</p>
                             <p><strong>Quantity: </strong>{order.product.quantity}</p>
-                            <p><strong>Price: </strong>{order.product.price.toFixed(2)}</p>
+                            <p><strong>Price: </strong>{order.product.price.toFixed(2)}</p> */}
                         </div>
                     </li>
                 ))}
@@ -99,7 +100,7 @@ const ProfilePage = () => {
                 
 
              </div>
-))
+)}
         </div>
     )
     

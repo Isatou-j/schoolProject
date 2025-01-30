@@ -40,7 +40,7 @@ const AdminOrderPage = () => {
 
       setTotalPages(Math.ceil(orderList.length/itemPerPage))
       setOrders(orderList);
-      setFilteredOrders(orderList.slice((currentPage -1) + itemPerPage, currentPage * itemPerPage))
+      setFilteredOrders(orderList.slice((currentPage - 1) * itemPerPage, currentPage * itemPerPage))
 
 
 
@@ -117,7 +117,9 @@ const AdminOrderPage = () => {
                     {filteredOrders.map((order =>(
                         <tr key={order.id}>
                             <td>{order.id}</td>
-                            <td>{order.user.name}</td>
+                            {/* The order does not contain any user. That's why below is not working and I commented it */}
+                            {/* <td>{order.user.name}</td> */}
+                            <td>Static holder for the above</td>
                             <td>{order.status}</td>
                             <td>{order.price.toFixed(2)}</td>
                             <td>{new Date(order.createdAt).toLocaleDateString()}</td>

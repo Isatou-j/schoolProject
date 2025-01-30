@@ -8,7 +8,7 @@ import com.schoolProject.ecommerceApplication.exception.NotFoundException;
 import com.schoolProject.ecommerceApplication.mapper.EntityDtoMapper;
 import com.schoolProject.ecommerceApplication.repository.CategoryRepo;
 import com.schoolProject.ecommerceApplication.repository.ProductRepo;
-import com.schoolProject.ecommerceApplication.service.AwsS3Service;
+//import com.schoolProject.ecommerceApplication.service.AwsS3Service;
 import com.schoolProject.ecommerceApplication.service.interf.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,20 +28,21 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
     private final CategoryRepo categoryRepo;
     private final EntityDtoMapper entityDtoMapper;
-    private AwsS3Service awsS3Service;
+//    private final AwsS3Service awsS3Service;
 
     @Override
-    public Response createProduct(Long categoryId, MultipartFile image, String name, String description, BigDecimal price) {
+    public Response createProduct(Long categoryId, String image, String name, String description, BigDecimal price) {
         Category category = categoryRepo.findById(categoryId)
                 .orElseThrow(()-> new NotFoundException("category not found"));
-        String productImageUrl = awsS3Service.saveImageToS3(image);
+//        String productImageUrl = awsS3Service.saveImageToS3(image);
 
         Product product  = new Product();
-        product.setCategory(category);
+        product.setCategory(category); 
         product.setName(name);
         product.setDescription(description);
         product.setPrice(price);
-        product.setImageUrl(productImageUrl);
+//        product.setImageUrl(productImageUrl);
+        product.setImageUrl(image);
 
         productRepo.save(product);
 
@@ -52,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Response updateProduct(Long productId, Long categoryId, MultipartFile image, String name, String description, BigDecimal price){
+    public Response updateProduct(Long productId, Long categoryId, String image, String name, String description, BigDecimal price){
 
         Product product = productRepo.findById(productId)
                 .orElseThrow(()-> new NotFoundException("Product not found"));
@@ -64,9 +65,9 @@ public class ProductServiceImpl implements ProductService {
              category = categoryRepo.findById(categoryId)
                      .orElseThrow(()-> new NotFoundException("Category not found"));
          }
-         if (image != null && image.isEmpty()){
-             productImageUrl = awsS3Service.saveImageToS3(image);
-         }
+//         if (image != null && image.isEmpty()){
+//             productImageUrl = awsS3Service.saveImageToS3(image);
+//         }
 
          if (category != null) product.setCategory(category);
         if (name != null) product.setName(name);
@@ -90,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepo.findById(productId)
                 .orElseThrow(()-> new NotFoundException("Product not found"));
 
-        productRepo.save(product);
+        productRepo.deleteById(product.getId());
 
         return Response.builder()
                 .status(200)

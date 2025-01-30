@@ -23,7 +23,7 @@ public class AddressServiceImpl implements AddressService {
         User user = userService.getLoginUser();
         Address address = new Address();
 
-        if (address == null){
+        if (user != null){
             address = new Address();
             address.setUser(user);
         }

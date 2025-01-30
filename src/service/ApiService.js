@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default class ApiService{
-    static BASE_URL = "http:/localhost:8080";
+    static BASE_URL = "http://localhost:8080";
 
     static getHeader(){
         const token = localStorage.getItem("token");
@@ -33,21 +33,15 @@ export default class ApiService{
 
 static async addProduct(formData) {
     const response = await axios.post(`${this.BASE_URL}/product/create`, formData, {
-        headers: {
-            ...this.getHeader(),
-            "Content-Type": "multipart/form-data"
-        }
+        headers: this.getHeader()
     });
 
     return response.data;
 }
 
-static async updateProduct(formData){
-    const response = await axios.put(`${this.BASE_URL}/product/update`,formData,{
-        headers: {
-            ...this.getHeader(),
-            "Content-Type": "multipart/form-data"
-        }
+static async updateProduct(id, formData){
+    const response = await axios.put(`${this.BASE_URL}/product/update/${id}`,formData,{
+        headers: this.getHeader()
     })
     return response.data;
    
@@ -66,12 +60,12 @@ static async searchProducts(searchValue){
 }
 
 static async getAllProductsByCategoryId(categoryId){
-    const response = await axios.get(`${this.BASE_URL}/product/get-by-category-id/${categoryId}`)
+    const response = await axios.get(`${this.BASE_URL}/product/get-byy-category-id/${categoryId}`)
     return response.data;
 }
 
 static async getProductById(productId){
-    const response = await axios.get(`${this.BASE_URL}/product/get-by-product-id/${productId}`)
+    const response = await axios.get(`${this.BASE_URL}/product/get-all-product/${productId}`)
     return response.data;
 }
 
@@ -98,7 +92,7 @@ static async getAllCategory(){
 }
 
 static async getCategoryById(categoryId){
-    const response = await axios.get(`${this.BASE_URL}/category/get-category-by-all/${categoryId}`)
+    const response = await axios.get(`${this.BASE_URL}/category/get-category-by-id/${categoryId}`)
      return response.data
 
 }
@@ -122,6 +116,7 @@ static async deleteCategory(categoryId){
 /**ORDER*/
 
 static async createOrder(body){
+    console.log(body)
     const response = await axios.post(`${this.BASE_URL}/order/create`, body,{
         headers: this.getHeader()
     })

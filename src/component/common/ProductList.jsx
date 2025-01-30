@@ -53,7 +53,7 @@ const ProductList = ({products}) => {
                     )};
                 </div>
                );
-            })};
+            })}
 
         </div>
     )

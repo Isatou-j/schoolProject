@@ -27,14 +27,14 @@ const AdminCategoryPage = () => {
     }
 
     const handleEdit = async (id) => {
-        navigate(`/admin/edit-category/${id}`)
+        navigate(`/admin/edit-categories/${id}`)
     }
 
-    const handleDelete = async () => {
+    const handleDelete = async (id) => {
         const confirmed = window.confirm("Are you sure you want to delete this category? ")
         if(confirmed){
             try{
-                await ApiService.deleteCategory();
+                await ApiService.deleteCategory(id);
                 fetchCategories();
             }catch(error){
                 console.log("Error deleting category by id")
@@ -48,7 +48,7 @@ const AdminCategoryPage = () => {
                 <h2>
                     Categories
                 </h2>
-                <button onClick={() => navigate('/admin/add-category')}>Add Category</button>
+                <button onClick={() => navigate('/admin/add-categories')}>Add Category</button>
                 <ul>
                     {categories.map((category) => (
                         <li key={category.id}>

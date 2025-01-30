@@ -1,6 +1,7 @@
 package com.schoolProject.ecommerceApplication.controller;
 
 import com.schoolProject.ecommerceApplication.dto.Response;
+import com.schoolProject.ecommerceApplication.entity.Product;
 import com.schoolProject.ecommerceApplication.exception.InvalidCredentialException;
 import com.schoolProject.ecommerceApplication.service.interf.OrderItemService;
 import com.schoolProject.ecommerceApplication.service.interf.ProductService;
@@ -21,32 +22,23 @@ public class ProductController {
 
     @PostMapping("/create")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<Response> createProduct(
-            @RequestParam Long categoryId,
-            @RequestParam MultipartFile image,
-            @RequestParam String name,
-            @RequestParam String description,
-            @RequestParam BigDecimal price
+    public ResponseEntity<Response> createProduct(@RequestBody Product product
+
             ){
-        if (categoryId == null || image.isEmpty() || name.isEmpty() || description.isEmpty() || price == null){
+        if (product.getCategory().getId() <= 0 || product.getImageUrl().isEmpty() || product.getName().isEmpty() || product.getDescription().isEmpty() || product.getPrice() == null){
             throw new InvalidCredentialException("All Fields are required");
         }
-        return ResponseEntity.ok(productService.createProduct(categoryId,image,name,description, price));
+        return ResponseEntity.ok(productService.createProduct(product.getCategory().getId(),product.getImageUrl(),product.getName(),product.getDescription(), product.getPrice()));
 
     }
 
     @PutMapping("/update/{productId}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<Response> updateProduct(
-            @RequestParam Long productId,
-            @RequestParam (required = false) Long categoryId,
-            @RequestParam (required = false) MultipartFile image,
-            @RequestParam (required = false) String name,
-            @RequestParam (required = false) String description,
-            @RequestParam (required = false) BigDecimal price
+    public ResponseEntity<Response> updateProduct(@RequestBody Product product
+
     ){
 
-        return ResponseEntity.ok(productService.updateProduct(productId,categoryId,image,name,description, price));
+        return ResponseEntity.ok(productService.updateProduct(product.getId(),product.getCategory().getId(),product.getImageUrl(),product.getName(),product.getDescription(), product.getPrice()));
 
     }
 

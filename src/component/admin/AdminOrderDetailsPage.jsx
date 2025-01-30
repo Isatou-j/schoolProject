@@ -40,7 +40,7 @@ const AdminOrderDetailsPage = () =>{
            setMessage(error.response?.data?.message || error.message || 'unable to update order item status')
         }
     }
-
+// this component is having problem. need to check it properly.
     return(
         <div className="order-details-page">
             {message && <div className="message">{message}</div>}

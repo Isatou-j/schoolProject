@@ -4,6 +4,7 @@ import ApiService from "../../service/ApiService";
 import ProductList from "../common/ProductList";
 import Pagination from "../common/Pagination";
 import '../../style/home.css'
+import { all } from "axios";
 
 
 const CategoryProductsPage = () => {
@@ -23,11 +24,11 @@ const CategoryProductsPage = () => {
         try{
             
             const response = await ApiService.getAllProductsByCategoryId(categoryId);
-            const allProducts = response.ProductList || [];
-             console.log(allProducts);
+            const allProducts = response.productList || [];
 
             setTotalPage(Math.ceil(allProducts.length / itemPerPage));
-            setProducts(allProducts.slice((currentPage - 1 * itemPerPage, currentPage * itemPerPage)));
+            // setProducts(allProducts.slice((currentPage - 1 * itemPerPage, currentPage * itemPerPage)));
+            setProducts(allProducts);
 
                  }
 

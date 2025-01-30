@@ -18,7 +18,8 @@ const CategoryListPage = () => {
 const fetchCategories = async() =>{
     try{
        const response = await ApiService.getAllCategory();
-       setCategories(response.CategoryList || [])
+       setCategories(response.categoryList || [])
+       
 }catch(error){
       setError(error.response?.data?.message || 'unable to fetch category')
 

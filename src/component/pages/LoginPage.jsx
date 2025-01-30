@@ -27,10 +27,12 @@ const LoginPage = () => {
             const response = await ApiService.loginUser(formData);
             if(response.status ===200)
                 setMessage("User Successfully logg in");
-                localStorage.getItem('token', response.token)
+                localStorage.setItem('token', response.token)
                 localStorage.setItem('role', response.role)
             setTimeout(()=> {
-                navigate("/profile")
+                {response.role === 'USER' ? 
+                navigate("/profile") : 
+                navigate("/admin") }
             }, 4000)
         }
         catch(error){
